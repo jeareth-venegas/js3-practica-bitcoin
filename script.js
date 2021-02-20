@@ -49,7 +49,7 @@ const bitcoinPriceUrl = "https://api.coindesk.com/v1/bpi/currentprice.json";
 const priceElement = document.querySelector("h2");
 const timeElement = document.querySelector("p");
 const button = document.querySelector("button");
-const select = document.querySelector("select");
+const moneda = document.querySelector("select");
 
 const actualizarDatos = () => {
   fetch(bitcoinPriceUrl, {
@@ -65,18 +65,18 @@ const actualizarDatos = () => {
       return response.json();
     })
     .then((data) => {
-      const USD_INFO = data.bpi.USD;
-      priceElement.innerHTML = `${USD_INFO.code}${USD_INFO.symbol} ${USD_INFO.rate}`;
-      
-      
-      const GBP_INFO = data.bpi.GBP;
-      priceElement.innerHTML = `${GBP_INFO.code}${GBP_INFO.symbol} ${GBP_INFO.rate}`;
-
-
-      const EUR_INFO = data.bpi.EUR;
-      priceElement.innerHTML = `${EUR_INFO.code}${EUR_INFO.symbol} ${EUR_INFO.rate}`;
-
-
+      const moneda = document.querySelector("select");
+      console.log(moneda.value);
+      if(moneda.value === 'USD'){
+        const USD_INFO = data.bpi.USD;
+        priceElement.innerHTML = `${USD_INFO.code}${USD_INFO.symbol} ${USD_INFO.rate}`;
+      } else if (moneda.value === 'GBP'){
+        const GBP_INFO = data.bpi.GBP;
+        priceElement.innerHTML = `${GBP_INFO.code}${GBP_INFO.symbol} ${GBP_INFO.rate}`;
+      }else if (moneda.value === 'EUR'){
+        const EUR_INFO = data.bpi.EUR;
+        priceElement.innerHTML = `${EUR_INFO.code}${EUR_INFO.symbol} ${EUR_INFO.rate}`;
+      }
 
       // AQUI TENEMOS LA FECHA DENTRO DE data.time.updated
 
