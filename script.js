@@ -77,7 +77,7 @@ const actualizarDatos = () => {
         const EUR_INFO = data.bpi.EUR;
         priceElement.innerHTML = `${EUR_INFO.code}${EUR_INFO.symbol} ${EUR_INFO.rate}`;
       }
-
+      actualizarDatos();
       // AQUI TENEMOS LA FECHA DENTRO DE data.time.updated
 
       const time_info = data.time.updated;
